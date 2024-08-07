@@ -1,0 +1,19 @@
+.vscode
+.idea
+
+cache.sqlite3
+/db
+/logs
+
+# Environments
+config.env
+.env
+.venv
+env/
+venv/
+ENV/
+__debug**
+build/
+dist/
+node_modules/
+robots.txt

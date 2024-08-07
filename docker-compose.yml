@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  copilot-gpt4-service:
+    image: aaamoon/copilot-gpt4-service:latest
+    environment:
+      - HOST=0.0.0.0
+      #- COPILOT_TOKEN=gnu_xxxxx
+      #- SUPER_TOKEN=your_super_token
+      #- ENABLE_SUPER_TOKEN=false
+      #- RATE_LIMIT=1000
+    ports:
+      - 8080:8080
+    restart: unless-stopped
+    container_name: copilot-gpt4-service
+    command: ["-log_level", "info"]

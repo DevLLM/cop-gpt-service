@@ -1,0 +1,120 @@
+# Default values for copilot-gpt4-service.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+image:
+  repository: aaamoon/copilot-gpt4-service
+  pullPolicy: Always
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: latest
+
+config:
+  HOST: 0.0.0.0
+  PORT: 8080
+
+
+persistent:
+  cache:
+    enabled: false # true or false
+    type: pvc # pvc or hostPath
+    name: cache
+    mountPath: /var/copilot-gpt4-service/cache.sqlite3
+    pvc: # if type is pvc
+      storageClassName: "" # if empty use default storage class
+      claimName: copilot-gpt4-service-cache
+      accessModes:
+        - ReadWriteOnce
+      size: 1Gi
+    hostPath: # if type is hostPath
+      path: /var/copilot-gpt4-service/cache.sqlite3
+      type: DirectoryOrCreate
+
+imagePullSecrets: [ ]
+nameOverride: ""
+fullnameOverride: "copilot-gpt4-service"
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # Automatically mount a ServiceAccount's API credentials?
+  automount: true
+  # Annotations to add to the service account
+  annotations: { }
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""
+
+podAnnotations: { }
+podLabels: { }
+
+podSecurityContext: { }
+# fsGroup: 2000
+
+securityContext: { }
+# capabilities:
+#   drop:
+#   - ALL
+# readOnlyRootFilesystem: true
+# runAsNonRoot: true
+# runAsUser: 1000
+
+service:
+  type: ClusterIP
+  port: 8080
+
+ingress:
+  enabled: false
+  className: "nginx"
+  annotations: { }
+  #    cert-manager.io/cluster-issuer: letsencrypt-prod
+  #    kubernetes.io/tls-acme: "true"
+  hosts:
+    - host: example.com
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
+  tls: [ ]
+
+resources: { }
+# We usually recommend not to specify default resources and to leave this as a conscious
+# choice for the user. This also increases chances charts run on environments with little
+# resources, such as Minikube. If you do want to specify resources, uncomment the following
+# lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+# limits:
+#   cpu: 100m
+#   memory: 128Mi
+# requests:
+#   cpu: 100m
+#   memory: 128Mi
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 100
+  targetCPUUtilizationPercentage: 80
+  # targetMemoryUtilizationPercentage: 80
+
+
+# Additional volumeMounts on the output Deployment definition.
+volumeMounts: [ ]
+# - name: foo
+#   mountPath: "/etc/foo"
+#   readOnly: true
+
+nodeSelector: { }
+
+tolerations: [ ]
+
+affinity: { }
+
+chatgpt-next-web:
+  enabled: false
+  config:
+    BASE_URL: http://copilot-gpt4-service:8080 # if you want to use copilot-gpt4-service
+    OPENAI_API_KEY: [ your openai api key ]
+    CODE: [ backend access code ]
+    #  AZURE_URL: https://[your azure api url] # if you want to use azure api
+    #  AZURE_API_VERSION: 2023-08-01-preview # if you want to use azure api
+    #  AZURE_API_KEY: [your azure api key] # if you want to use azure api

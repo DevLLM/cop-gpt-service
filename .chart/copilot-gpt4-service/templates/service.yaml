@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "copilot-gpt4-service.fullname" . }}
+  labels:
+    {{- include "copilot-gpt4-service.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    {{- include "copilot-gpt4-service.selectorLabels" . | nindent 4 }}

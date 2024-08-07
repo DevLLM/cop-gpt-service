@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns:xl="http://www.w3.org/1999/xlink" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2000/svg" viewBox="503 278 1175 103" width="1175" height="103">
+  <defs>
+    <filter id="Shadow" filterUnits="userSpaceOnUse" x="385.5" y="267.7">
+      <feGaussianBlur in="SourceAlpha" result="blur" stdDeviation="1.308"/>
+      <feOffset in="blur" result="offset" dx="0" dy="2"/>
+      <feFlood flood-color="black" flood-opacity=".5" result="flood"/>
+      <feComposite in="flood" in2="offset" operator="in" result="color"/>
+      <feMerge>
+        <feMergeNode in="color"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <marker orient="auto" overflow="visible" markerUnits="strokeWidth" id="FilledArrow_Marker" stroke-linejoin="miter" stroke-miterlimit="10" viewBox="-1 -4 10 8" markerWidth="10" markerHeight="8" color="black">
+      <g>
+        <path d="M 8 0 L 0 -3 L 0 3 Z" fill="currentColor" stroke="currentColor" stroke-width="1"/>
+      </g>
+    </marker>
+  </defs>
+  <g id="Canvas_1" fill-opacity="1" stroke="none" stroke-opacity="1" stroke-dasharray="none" fill="none">
+    <title>Canvas 1</title>
+    <g id="Canvas_1_Layer_1">
+      <title>Layer 1</title>
+      <g id="Graphic_2" filter="url(#Shadow)">
+        <path d="M 511 279 L 762 279 C 764.7614 279 767 281.23858 767 284 L 767 371 C 767 373.76142 764.7614 376 762 376 L 511 376 C 508.2386 376 506 373.76142 506 371 L 506 284 C 506 281.23858 508.2386 279 511 279 Z" fill="#40ff40"/>
+        <text transform="translate(511 315)" fill="black">
+          <tspan font-family="PingFang SC" font-size="18" fill="black" x="64.912" y="19">ChatGpt-Next</tspan>
+        </text>
+      </g>
+      <g id="Graphic_3" filter="url(#Shadow)">
+        <path d="M 965 279 L 1216 279 C 1218.7614 279 1221 281.23858 1221 284 L 1221 371 C 1221 373.76142 1218.7614 376 1216 376 L 965 376 C 962.2386 376 960 373.76142 960 371 L 960 284 C 960 281.23858 962.2386 279 965 279 Z" fill="#c0ffc0"/>
+        <text transform="translate(965 315)" fill="black">
+          <tspan font-family="PingFang SC" font-size="18" fill="black" x="39.316" y="19">Copilot gpt4 service</tspan>
+        </text>
+      </g>
+      <g id="Line_4">
+        <line x1="767" y1="327.5" x2="950.1" y2="327.5" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Graphic_6" filter="url(#Shadow)">
+        <path d="M 1419 279 L 1670 279 C 1672.7614 279 1675 281.23858 1675 284 L 1675 371 C 1675 373.76142 1672.7614 376 1670 376 L 1419 376 C 1416.2386 376 1414 373.76142 1414 371 L 1414 284 C 1414 281.23858 1416.2386 279 1419 279 Z" fill="#4040ff"/>
+        <text transform="translate(1419 315)" fill="white">
+          <tspan font-family="PingFang SC" font-size="18" fill="white" x="29.812" y="19">Github Copilot API Srv</tspan>
+        </text>
+      </g>
+      <g id="Line_7">
+        <line x1="1221" y1="327.5" x2="1404.1" y2="327.5" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+    </g>
+  </g>
+</svg>

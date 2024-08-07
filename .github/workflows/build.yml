@@ -1,0 +1,53 @@
+name: Build
+
+on:
+  push:
+    paths-ignore:
+      - 'README*'
+      - 'LICENSE'
+      - 'CODE_OF_CONDUCT.md'
+      - '.editorconfig'
+      - '.chart/**'
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        goos: [windows, linux, darwin]
+        goarch: [amd64, arm64]
+      fail-fast: false
+
+    runs-on: ubuntu-latest
+    env:
+      GOOS: ${{ matrix.goos }}
+      GOARCH: ${{ matrix.goarch }}
+      CGO_ENABLED: 0
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup Go
+        uses: actions/setup-go@v3
+        with:
+          go-version-file: go.mod
+          cache: true
+          cache-dependency-path: go.sum
+
+      - name: Build
+        run: |
+          go build -o build/copilot-gpt4-service-${{ matrix.goos }}-${{ matrix.goarch }}
+          ls -la build
+
+      - name: Rename (Windows)
+        if: matrix.goos == 'windows'
+        run: |
+          mv build/copilot-gpt4-service-${{ matrix.goos }}-${{ matrix.goarch }} build/copilot-gpt4-service-${{ matrix.goos }}-${{ matrix.goarch }}.exe
+          ls -la build
+
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: copilot-gpt4-service-${{ matrix.goos }}-${{ matrix.goarch }}
+          path: build/*
